@@ -7,14 +7,30 @@ struct Node
     struct Node *next;
 } *first = NULL;
 
+int count(struct Node *head)
+{
+    int c = 0;
+    
+    while (head != NULL)
+    {
+        c++;
+        head = head->next;
+    }
+
+    return c;
+}
+
 void create(int A[], int n)
 {
     int i;
     struct Node *t, *last;
+
     first = (struct Node *)malloc(sizeof(struct Node));
     first->data = A[0];
+
     first->next = NULL;
     last = first;
+
     for (i = 1; i < n; i++)
     {
         t = (struct Node *)malloc(sizeof(struct Node));
@@ -24,6 +40,7 @@ void create(int A[], int n)
         last = t;
     }
 }
+
 void Display(struct Node *p)
 {
     while (p != NULL)
@@ -31,7 +48,11 @@ void Display(struct Node *p)
         printf("%d ", p->data);
         p = p->next;
     }
+
+    printf("\n");
 }
+
+
 
 void Insert(struct Node *p, int index, int x)
 {
@@ -85,6 +106,17 @@ int Delete(struct Node *p, int index)
 
 int main(int argc, char const *argv[])
 {
+    int arr[] = {1,2,3,4,5,6,7,8,9};
+    int n = 9;
+
+    create(arr,n);
+    Display(first);
+
+    Insert(first,4,560);
+    Display(first);
+
+    Delete(first,2);
+    Display(first);
 
     return 0;
 }
